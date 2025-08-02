@@ -101,11 +101,13 @@ if ($enkey == $status) {
                         <div class="bordertop">
                             <div class="box-header with-border">
                                 <h3 class="box-title titlefix"> <?php echo $this->lang->line('admission_enquiry'); ?></h3>
+                                
                                 <div class="box-tools pull-right">
                                     <?php if ($this->rbac->hasPrivilege('admission_enquiry', 'can_add')) {?>
                                         <button type="button" class="btn btn-sm btn-primary openmodal" ><i class="fa fa-plus"></i> <?php echo $this->lang->line('add'); ?></button>
                                     <?php }?>
                                 </div><!-- /.box-tools -->
+                                
                             </div><!-- /.box-header -->
                             <div class="box-body">
                                 <div class="download_label"><?php echo $this->lang->line('admission_enquiry_list'); ?></div>
@@ -145,7 +147,10 @@ if (empty($enquiry_list)) {
         }
         ?>
                                                         <tr <?php echo $class ?>>
-                                                            <td class="mailbox-name"><?php echo $value['name']; ?> </td>
+                                                            <td class="mailbox-name">
+                                                                <img src="<?= base_url('uploads/footer/CRB/1.png') ?>" alt="Profile" style="width:32px; height:32px; border-radius:50%; vertical-align:middle; margin-right:8px;">
+                                                                <?php echo $value['name']; ?>
+                                                             </td>
                                                             <td class="mailbox-name"><?php echo $value['contact']; ?> </td>
                                                             <td class="mailbox-name"><?php echo $value['source']; ?></td>
                                                             <td class="mailbox-name"> <?php
@@ -163,25 +168,27 @@ if (!empty($next_date) && $next_date != '0000-00-00') {
             echo date($this->customlib->getSchoolDateFormat(), $this->customlib->dateyyyymmddTodateformat($next_date));
         }
         ?></td>
-                                                            <td> <?php echo $enquiry_status[$value["status"]] ?></td>
+                                                            <td class="status"> <?php echo $enquiry_status[$value["status"]] ?></td>
                                                             <td class="mailbox-date text-right white-space-nowrap">
                                                                 <?php if ($this->rbac->hasPrivilege('follow_up_admission_enquiry', 'can_view')) {?>
                                                                     <a class="btn btn-default btn-xs" onclick="follow_up('<?php echo $value['id']; ?>', '<?php echo $value['status']; ?>', '<?php echo $value['created_by']; ?>');"  data-target="#follow_up" data-toggle="modal"  title="<?php echo $this->lang->line('follow_up_admission_enquiry'); ?>">
                                                                         <i class="fa fa-phone"></i>
                                                                     </a>
                                                                 <?php }
+
         ?>
-                                                                <?php if ($this->rbac->hasPrivilege('admission_enquiry', 'can_edit')) {?>
+                                                            <?php if ($this->rbac->hasPrivilege('admission_enquiry', 'can_delete')) {?>
+                                                                    <a href="#" class="btn btn-default btn-xs" data-toggle="tooltip" title="" onclick="delete_enquiry('<?php echo $value["id"] ?>')" data-original-title="<?php echo $this->lang->line('delete'); ?>">
+<i class="fa fa-trash"></i> 
+                                                                    </a>
+                                                                <?php }
+        ?>
+                <?php if ($this->rbac->hasPrivilege('admission_enquiry', 'can_edit')) {?>
                                                                     <a  onclick="getRecord('<?php echo $value['id']; ?>', '<?php echo $value['status']; ?>')" class="btn btn-default btn-xs" data-target="#myModaledit" data-toggle="modal"   title="<?php echo $this->lang->line('edit'); ?>"><i class="fa fa-pencil"></i>
                                                                     </a>
                                                                 <?php }
         ?>
-                                                                <?php if ($this->rbac->hasPrivilege('admission_enquiry', 'can_delete')) {?>
-                                                                    <a href="#" class="btn btn-default btn-xs" data-toggle="tooltip" title="" onclick="delete_enquiry('<?php echo $value["id"] ?>')" data-original-title="<?php echo $this->lang->line('delete'); ?>">
-                                                                        <i class="fa fa-remove"></i>
-                                                                    </a>
-                                                                <?php }
-        ?>
+                                                            
                                                             </td>
                                                         </tr>
                                                         <?php

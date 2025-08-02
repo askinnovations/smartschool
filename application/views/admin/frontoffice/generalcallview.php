@@ -15,49 +15,50 @@
                         <form id="form1" action="<?php echo site_url('admin/generalcall') ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
                             <div class="box-body">
                                 <?php echo $this->session->flashdata('msg'); $this->session->unset_userdata('msg'); ?>
-                                <div class="form-group">
+                                <div class="form-group col-lg-6">
                                     <label for="exampleInputEmail1"><?php echo $this->lang->line('name'); ?></label>
                                     <input type="text" class="form-control" value="<?php echo set_value('name'); ?>" name="name">
                                     <span class="text-danger"><?php echo form_error('name'); ?></span>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group col-lg-6">
                                     <label for="pwd"><?php echo $this->lang->line('phone'); ?></label><small class="req"> *</small>  
                                     <input type="text" class="form-control" value="<?php echo set_value('contact'); ?>" name="contact">
                                     <span class="text-danger"><?php echo form_error('contact'); ?></span>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group col-lg-6">
                                     <label for="pwd"><?php echo $this->lang->line('date'); ?></label><small class="req"> *</small> 
                                     <input id="date" name="date" placeholder="" type="text" class="form-control date"  value="<?php echo set_value('date', date($this->customlib->getSchoolDateFormat())); ?>" readonly="readonly" />
                                     <span class="text-danger"><?php echo form_error('date'); ?></span>
                                 </div>
-                                <div class="form-group">
-                                    <label for="email"><?php echo $this->lang->line('description'); ?></label> 
-                                    <textarea class="form-control" id="description" name="description"  rows="3"><?php echo set_value('description'); ?></textarea>
-                                </div>
-                                <div class="form-group">
+                                <div class="form-group col-lg-6">
                                     <div class="form-group">
                                         <label for="pwd"><?php echo $this->lang->line('next_follow_up_date'); ?></label>     <input id="follow_up_date" name="follow_up_date" placeholder="" type="text" class="form-control date"  value="<?php echo set_value('follow_up_date'); ?>" readonly="readonly" />
                                         <span class="text-danger"><?php echo form_error('follow_up_date'); ?></span>
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label for="email"><?php echo $this->lang->line('description'); ?></label> 
+                                    <textarea class="form-control" id="description" name="description"  rows="3" style="width: 89%;"><?php echo set_value('description'); ?></textarea>
+                                </div>
+                                <div class="form-group col-lg-6">
                                     <label for="pwd"><?php echo $this->lang->line('call_duration'); ?></label>
                                     <input type="text" class="form-control" value="<?php echo set_value('call_duration'); ?>" name="call_duration">
                                     <span class="text-danger"><?php echo form_error('call_duration'); ?></span>
                                 </div>
-                                <div class="form-group">
-                                    <label for="pwd"><?php echo $this->lang->line('note'); ?></label>
-                                    <textarea class="form-control" id="description" name="note" name="note" rows="3"><?php echo set_value('note'); ?></textarea>
-                                    <span class="text-danger"><?php echo form_error('note'); ?></span>
-                                </div>
-                                <div class="form-group">
-                                    <label for="pwd"><?php echo $this->lang->line('call_type'); ?></label>
+                                <div class="form-group col-lg-6">
+                                    <label for="pwd" style="margin-left: 75px;"><?php echo $this->lang->line('call_type'); ?></label>
                                     <small class="req"> *</small>  
                                     <?php foreach ($call_type as $key => $value) { ?>
-                                        <label class="radio-inline"><input type="radio" name="call_type" value="<?php echo $key; ?>" <?php if (set_value('call_type') == $key) { ?> checked=""<?php } ?>> <?php echo $value; ?></label>
+                                        <label class="radio-inline" style="margin-left: 40%;"><input type="radio" name="call_type" value="<?php echo $key; ?>" <?php if (set_value('call_type') == $key) { ?> checked=""<?php } ?>> <?php echo $value; ?></label>
                                     <?php } ?>
                                     <span class="text-danger"><?php echo form_error('call_type'); ?></span>
                                 </div>
+                                <div class="form-group">
+                                    <label for="pwd"><?php echo $this->lang->line('note'); ?></label>
+                                    <textarea class="form-control" id="description" name="note" name="note" rows="3" style="width: 89%;"><?php echo set_value('note'); ?></textarea>
+                                    <span class="text-danger"><?php echo form_error('note'); ?></span>
+                                </div>
+                                
                             </div><!-- /.box-body -->
                             <div class="box-footer">
                                 <button type="submit" class="btn btn-info pull-right"><?php echo $this->lang->line('save'); ?></button>

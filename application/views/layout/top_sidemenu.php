@@ -1,4 +1,4 @@
-<ul class="sessionul fixedmenu">
+<ul class="sessionul fixedmenu" style="display:none;>
     <?php
     if ($this->rbac->hasPrivilege('quick_session_change', 'can_view')) {
     ?>
@@ -119,6 +119,7 @@
         </div>
     </li>
 </ul>
+
 <script>
     $('.verticalmenu').click(function(event) {
         event.stopPropagation();

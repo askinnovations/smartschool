@@ -112,10 +112,10 @@ if ($this->config->item('SSLK') == "") {
        <div class="wrapper">
 
             <header class="main-header" id="alert">
-                <a href="<?php echo base_url(); ?>admin/admin/dashboard" class="logo">
+                <!-- <a href="<?php echo base_url(); ?>admin/admin/dashboard" class="logo">
                     <span class="logo-mini"><img src="<?php echo $this->customlib->getBaseUrl(); ?>uploads/school_content/admin_small_logo/<?php echo $this->setting_model->getAdminsmalllogo() . img_time();?>" alt="<?php echo $this->customlib->getAppName() ?>" /></span>
                     <span class="logo-lg"><img src="<?php echo $this->customlib->getBaseUrl(); ?>uploads/school_content/admin_logo/<?php echo $this->setting_model->getAdminlogo() . img_time();?>" alt="<?php echo $this->customlib->getAppName() ?>" /></span>
-                </a>
+                </a> -->
                 <nav class="navbar navbar-static-top" role="navigation">
                     <a onclick="collapseSidebar()"  class="sidebar-toggle" data-toggle="offcanvas" role="button">
                         <span class="sr-only"><?php echo $this->lang->line('toggle_navigation'); ?></span>
@@ -125,7 +125,7 @@ if ($this->config->item('SSLK') == "") {
                     </a>
                     <div class="col-lg-5 col-md-3 col-sm-2 col-xs-4">
                         <span href="#"  class="sidebar-session">
-                            <?php echo $this->setting_model->getCurrentSchoolName(); ?>
+                            <!-- <?php echo $this->setting_model->getCurrentSchoolName(); ?> -->
                         </span>
                     </div>
                     <div class="col-lg-7 col-md-9 col-sm-10 col-xs-8">

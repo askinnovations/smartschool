@@ -5,7 +5,7 @@ $students = array();
 
 if (empty($studentList)) {
     ?>
-                                                    <?php
+    <?php
 } else {
     $count = 1;
     foreach ($studentList as $student_key => $student_value) {

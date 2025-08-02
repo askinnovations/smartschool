@@ -13,7 +13,7 @@ class Sidemenu extends Admin_Controller
     {
         parent::__construct();
         $this->load->model('sidebarmenu_model');
-
+        $this->load->library('media_storage');
     }
 
     public function index()
@@ -37,14 +37,16 @@ class Sidemenu extends Admin_Controller
         $this->form_validation->set_rules('menu', $this->lang->line('menu'), 'required|trim|xss_clean');
         $this->form_validation->set_rules('lang_key', $this->lang->line('lang_key'), 'required|trim|xss_clean');
         $this->form_validation->set_rules('activate_menu', 'Active Menu Array key', 'required|trim|xss_clean');
-        $this->form_validation->set_rules('icon', 'Icon', 'required|trim|xss_clean');
+        // $this->form_validation->set_rules('icon', 'Icon', 'required|trim|xss_clean');
+        // $this->form_validation->set_rules('title', 'Title', 'required|trim|xss_clean');
 
         if ($this->form_validation->run() == false) {
             $msg = array(
                 'menu'          => form_error('menu'),
                 'lang_key'      => form_error('lang_key'),
                 'activate_menu' => form_error('activate_menu'),
-                'icon'          => form_error('icon'),
+                // 'icon'          => form_error('icon'),
+                'title'         => form_error('title'),
             );
             $array = array('status' => 0, 'error' => $msg);
             echo json_encode($array);
@@ -64,12 +66,26 @@ class Sidemenu extends Admin_Controller
                 'id'                 => $menu_id,
                 'lang_key'           => $this->input->post('lang_key'),
                 'menu'               => $this->input->post('menu'),
-                'icon'               => $this->input->post('icon'),
+                'title'               => $this->input->post('title'),
                 'activate_menu'      => $this->input->post('activate_menu'),
                 'access_permissions' => $this->input->post('access_permissions'),
                 'sidebar_display'    => $sidebar,
                 'level'              => 0,
+                'image'              => "", // default blank
             );
+                    
+            
+           if (isset($_FILES["image"]) && !empty($_FILES["image"]['name'])) {
+
+                $img_name                      = $this->media_storage->fileupload("image", "./uploads/add_menu/");
+                    print_r($img_name);
+                $insert_array['image'] = $img_name;
+            }
+            // echo "<pre>";
+            // print_r($insert_array);
+            // echo "</pre>";
+            // die('👆 Check insert_array including uploaded image file name');
+                        
 
             $resultlist = $this->sidebarmenu_model->add($insert_array);
             $array      = array('status' => '1', 'message' => $this->lang->line('success_message'));

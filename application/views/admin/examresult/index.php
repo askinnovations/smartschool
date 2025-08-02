@@ -22,16 +22,16 @@
                                         <select autofocus="" id="exam_group_id" name="exam_group_id" class="form-control select2" >
                                             <option value=""><?php echo $this->lang->line('select'); ?></option>
                                             <?php
-foreach ($examgrouplist as $ex_group_key => $ex_group_value) {
-    ?>
-                                                <option value="<?php echo $ex_group_value->id ?>" <?php
-if (set_value('exam_group_id') == $ex_group_value->id) {
-        echo "selected=selected";
-    }
-    ?>><?php echo $ex_group_value->name; ?></option>
+                                                    foreach ($examgrouplist as $ex_group_key => $ex_group_value) {
+                                                        ?>
+                                                    <option value="<?php echo $ex_group_value->id ?>" <?php
+                                                    if (set_value('exam_group_id') == $ex_group_value->id) {
+                                                            echo "selected=selected";
+                                                        }
+                                                        ?>><?php echo $ex_group_value->name; ?></option>
                                                         <?php
-}
-?>
+                                                    }
+                                            ?>
                                         </select>
                                         <span class="text-danger"><?php echo form_error('exam_group_id'); ?></span>
                                     </div>
